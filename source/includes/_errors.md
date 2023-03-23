@@ -36,7 +36,7 @@ message | A text explaining the reason for an error.
 > An error response example:
 
 ```json
-error {
+"error" : {
   "code": 400,
   "message": "The 'content' propety is required.",
 }
