@@ -343,7 +343,6 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -363,7 +362,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
 
 <p>To obtain the credentials, register for an account on the Note Storer platform. Once registered, you will receive a username and password that can be used to authenticate the requests. </p>
 
-<aside class="warning">Keep the credentials secure and not share them with others, as they provide access to your data. </aside>
+<aside class="warning">Keep the credentials secure and don't share them with others, as they provide access to your data. </aside>
 
 <p><code>Authorization: Basic Base64{username:password}</code></p>
 
@@ -393,7 +392,7 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <p>Use the endpoint to create a new note.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://dev-api.notestorer.com/notes</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='request-body'>Request body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -406,7 +405,7 @@ You must replace `username` and`password` with your credentails and use [Base64 
 </tr>
 <tr>
 <td>content</td>
-<td>Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 1024 characters.</td>
+<td>Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-a-note'>Retrieve a note</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-L</span> <span class="s1">'https://dev-api.notestorer.com/notes/{id}'</span> <span class="se">\</span>
@@ -426,7 +425,7 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <p>Use the endpoint to retrieve a note specified by ID.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://dev-api.notestorer.com/notes/{id}</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='path-parameters'>Path parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -435,10 +434,26 @@ You must replace `username` and`password` with your credentails and use [Base64 
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>The ID of the note to retrieve</td>
+<td>The ID of the note to retrieve.</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-note'>Update a note</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://dev-api.notestorer.com/notes/:id'</span> <span class="se">\</span>
+<h2 id='update-a-note'>Update a note</h2><h3 id='quest-body'>Quest body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>Updated title of the note.</td>
+</tr>
+<tr>
+<td>content</td>
+<td>Updated text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://dev-api.notestorer.com/notes/:id'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Basic amFuZToxMjM0NTY3OA=='</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{
@@ -457,6 +472,20 @@ You must replace `username` and`password` with your credentails and use [Base64 
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Use the endpoint to update an existing note. Any property not provided will be left unchanged.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://dev-api.notestorer.com/notes/{id}</code></p>
+<h3 id='path-parameters-2'>Path parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The ID of the note to update.</td>
+</tr>
+</tbody></table>
 <h2 id='delete-a-note'>Delete a note</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">-g</span> <span class="nt">--request</span> DELETE <span class="s1">'https://dev-api.notestorer.com/notes/{id}'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Basic amFuZToxMjM0NTY3OA=='</span>
 </code></pre></div>
@@ -465,9 +494,9 @@ You must replace `username` and`password` with your credentails and use [Base64 
 </blockquote>
 
 <p>Use the endpoint to permanently delete a note specified by ID. The action can&#39;t be undone.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>DELETE https://dev-api.notestorer.com/notes/{id}</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='path-parameters-3'>Path Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -502,8 +531,8 @@ You must replace `username` and`password` with your credentails and use [Base64 
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>Use the endpoint to retrieve a list of your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<p>Use the endpoint to retrieve all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>[GET http://example.com/notes](https://dev-api.notestorer.com/notes)</code></p>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
