@@ -404,16 +404,53 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>title</td>
+<td>string</td>
 <td>Title of the note. If no title is specified, current date and time is set as the title.</td>
 </tr>
 <tr>
-<td>content</td>
+<td>content <br/><sup>Required</sup></td>
+<td>string</td>
 <td>Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.</td>
+</tr>
+</tbody></table>
+<h3 id='response-body'>Response body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>A unique identifier for the note.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Title of the note.</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>Text of the note.</td>
+</tr>
+<tr>
+<td>created</td>
+<td>string</td>
+<td>Date and time when the note is created. The date is in the UTC format.</td>
+</tr>
+<tr>
+<td>last_updated</td>
+<td>string</td>
+<td>Date and time when the note is last updated. The date is in the UTC format.</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-a-note'>Retrieve a note</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-L</span> <span class="s1">'https://dev-api.notestorer.com/notes/{id}'</span> <span class="se">\</span>
@@ -445,19 +482,56 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <td>The ID of the note to retrieve.</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-note'>Update a note</h2><h3 id='quest-body'>Quest body</h3>
+<h3 id='response-body-2'>Response body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>A unique identifier for the note.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Title of the note.</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>Text of the note.</td>
+</tr>
+<tr>
+<td>created</td>
+<td>string</td>
+<td>Date and time when the note is created. The date is in the UTC format.</td>
+</tr>
+<tr>
+<td>last_updated</td>
+<td>string</td>
+<td>Date and time when the note is last updated. The date is in the UTC format.</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-note'>Update a note</h2><h3 id='request-body-2'>Request body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>title</td>
+<td>string</td>
 <td>Updated title of the note.</td>
 </tr>
 <tr>
 <td>content</td>
+<td>string</td>
 <td>Updated text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.</td>
 </tr>
 </tbody></table>
@@ -539,7 +613,7 @@ You must replace `username` and`password` with your credentails and use [Base64 
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>Use the endpoint to retrieve all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.</p>
+<p>Use the endpoint all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>[GET http://example.com/notes](https://dev-api.notestorer.com/notes)</code></p>
 <h1 id='errors'>Errors</h1>
