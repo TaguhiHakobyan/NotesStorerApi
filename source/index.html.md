@@ -60,19 +60,6 @@ curl -L 'https://dev-api.notestorer.com/notes' \
 }'
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 1,
-  "title": "My first note",
-  "content": "This is my **first** note.",
-  "created": "2023-19-03 22:26:33",
-  "last_updated": "2023-19-03 22:26:33"
-}
-
-```
-
 Use the endpoint to create a new note.
 
 ### HTTP Request
@@ -85,6 +72,20 @@ Parameter | Type | Description
 --------- | ---- | -----------
 title | string |Title of the note. If no title is specified, current date and time is set as the title.
 content <br/><sup>Required</sup>  | string | Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "title": "My first note",
+  "content": "This is my **first** note.",
+  "created": "2023-19-03 22:26:33",
+  "last_updated": "2023-19-03 22:26:33"
+}
+
+```
 
 ### Response body
 
@@ -241,3 +242,13 @@ Use the endpoint all your notes. The notes are sorted by the last update date, w
 ### HTTP Request
 
 `[GET http://example.com/notes](https://dev-api.notestorer.com/notes)`
+
+### Response body
+
+Parameter | Type | Description
+--------- | ---- | -----------
+id | string | A unique identifier for the note. 
+title | string | Title of the note.
+content | string | Text of the note.
+created | string | Date and time when the note is created. The date is in the UTC format.
+last_updated | string | Date and time when the note is last updated. The date is in the UTC format.
