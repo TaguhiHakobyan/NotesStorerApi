@@ -456,17 +456,6 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <h2 id='retrieve-a-note'>Retrieve a note</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-L</span> <span class="s1">'https://dev-api.notestorer.com/notes/{id}'</span> <span class="se">\</span>
 <span class="nt">-H</span> <span class="s1">'Authorization: Basic amFuZToxMjM0NTY3OA=='</span>
 </code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My first note"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is my **first** note."</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
 <p>Use the endpoint to retrieve a note specified by ID.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://dev-api.notestorer.com/notes/{id}</code></p>
@@ -482,7 +471,18 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <td>The ID of the note to retrieve.</td>
 </tr>
 </tbody></table>
-<h3 id='response-body-2'>Response body</h3>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My first note"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is my **first** note."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response-body-2'>Response body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -516,7 +516,29 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <td>Date and time when the note is last updated. The date is in the UTC format.</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-note'>Update a note</h2><h3 id='request-body-2'>Request body</h3>
+<h2 id='update-a-note'>Update a note</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://dev-api.notestorer.com/notes/:id'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Basic amFuZToxMjM0NTY3OA=='</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+    "content":"This is an updated note."
+}'</span>
+</code></pre></div>
+<p>Use the endpoint to update an existing note. Any property not provided will be left unchanged.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://dev-api.notestorer.com/notes/{id}</code></p>
+<h3 id='path-parameters-2'>Path parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The ID of the note to update.</td>
+</tr>
+</tbody></table>
+<h3 id='request-body-2'>Request body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -535,13 +557,7 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <td>Updated text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://dev-api.notestorer.com/notes/:id'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'Authorization: Basic amFuZToxMjM0NTY3OA=='</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-<span class="nt">--data</span> <span class="s1">'{
-    "content":"This is an updated note."
-}'</span>
-</code></pre></div>
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -552,27 +568,45 @@ You must replace `username` and`password` with your credentails and use [Base64 
   </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 23:20:12"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Use the endpoint to update an existing note. Any property not provided will be left unchanged.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST https://dev-api.notestorer.com/notes/{id}</code></p>
-<h3 id='path-parameters-2'>Path parameters</h3>
+</span></code></pre></div><h3 id='response-body-3'>Response body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>The ID of the note to update.</td>
+<td>string</td>
+<td>A unique identifier for the note.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Title of the note.</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>Text of the note.</td>
+</tr>
+<tr>
+<td>created</td>
+<td>string</td>
+<td>Date and time when the note is created. The date is in the UTC format.</td>
+</tr>
+<tr>
+<td>last_updated</td>
+<td>string</td>
+<td>Date and time when the note is last updated. The date is in the UTC format.</td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-note'>Delete a note</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">-g</span> <span class="nt">--request</span> DELETE <span class="s1">'https://dev-api.notestorer.com/notes/{id}'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Basic amFuZToxMjM0NTY3OA=='</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns an HTTP 200 status code. </p>
+<p>The above command returns an HTTP <code>200 OK</code> status code. </p>
 </blockquote>
 
 <p>Use the endpoint to permanently delete a note specified by ID. The action can&#39;t be undone.</p>
@@ -593,6 +627,10 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <h2 id='list-all-notes'>List all notes</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://dev-api.notestorer.com/notes'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Basic amFuZToxMjM0NTY3OA=='</span>
 </code></pre></div>
+<p>Use the endpoint all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>[GET http://example.com/notes](https://dev-api.notestorer.com/notes)</code></p>
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -612,11 +650,7 @@ You must replace `username` and`password` with your credentails and use [Base64 
     </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-23-03 23:20:12"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div>
-<p>Use the endpoint all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
-<p><code>[GET http://example.com/notes](https://dev-api.notestorer.com/notes)</code></p>
-<h3 id='response-body-3'>Response body</h3>
+</span></code></pre></div><h3 id='response-body-4'>Response body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
