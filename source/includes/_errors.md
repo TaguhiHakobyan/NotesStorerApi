@@ -26,6 +26,10 @@ Status Code | Description
 
 
 
+## Error response
+
+The errors may also contain a JSON response body explaining what's wrong with the request. 
+
 > An error response example:
 
 ```json
@@ -35,10 +39,6 @@ Status Code | Description
 }
 
 ```
-
-## Error response
-
-The errors may also contain a JSON response body explaining what's wrong with the request. 
 
 Property | Description
 ---------- | -------
