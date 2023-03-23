@@ -5,6 +5,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </aside>
  -->
 Notes Storer API returns general HTTP status codes in any of the following ranges:
+
 - `2xx`: The range indicates that the request is successfully processed.
 - `4xx`: The range indicates that something is wrong with the request (incorrect parameters, failed authentication, and more).
 - `5xx`: The range indicates that something is wrong with our server.
@@ -23,14 +24,6 @@ Status Code | Description
 500 - Internal Server Error | An error occured on the server. Try again later.
 503 - Service Unavailable | Service is temporarily unavailable. Please try again later.
 
-## Error response
-
-The errors may also contain a JSON response body explaining what's wrong with the request. 
-
-Property | Description
----------- | -------
-code | Error code.
-message | A text explaining the reason for an error. 
 
 
 > An error response example:
@@ -42,4 +35,14 @@ message | A text explaining the reason for an error.
 }
 
 ```
+
+## Error response
+
+The errors may also contain a JSON response body explaining what's wrong with the request. 
+
+Property | Description
+---------- | -------
+code | Error code.
+message | A text explaining the reason for an error. 
+
 
