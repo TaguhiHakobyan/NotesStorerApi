@@ -4,7 +4,7 @@
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
  -->
-Notes Storer API returns general HTTP status codes in any of the following ranges:
+Note Storer API returns general HTTP status codes in any of the following ranges:
 
 - `2xx`: The range indicates that the request is successfully processed.
 - `4xx`: The range indicates that something is wrong with the request (incorrect parameters, failed authentication, and more).
@@ -12,7 +12,7 @@ Notes Storer API returns general HTTP status codes in any of the following range
 
 ## HTTP Status Codes
 
-Here are some common HTTP status codes that Notes Storer API may return
+Here are some common HTTP status codes that Note Storer API may return
 
 Status Code | Description
 ---------- | -------
