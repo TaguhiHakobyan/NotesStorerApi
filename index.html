@@ -340,6 +340,14 @@
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-status-codes" class="toc-h2 toc-link" data-title="HTTP Status Codes">HTTP Status Codes</a>
+                  </li>
+                  <li>
+                    <a href="#error-response" class="toc-h2 toc-link" data-title="Error response">Error response</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -535,64 +543,81 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>[GET http://example.com/notes](https://dev-api.notestorer.com/notes)</code></p>
 <h1 id='errors'>Errors</h1>
-<aside class="notice">
+<!-- <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
+ -->
 
-<p>The Kittn API uses the following error codes:</p>
+<p>Notes Storer API returns general HTTP status codes in any of the following ranges:
+- <code>2xx</code>: The range indicates that the request is successfully processed.
+- <code>4xx</code>: The range indicates that something is wrong with the request (incorrect parameters, failed authentication, and more).
+- <code>5xx</code>: The range indicates that something is wrong with our server.</p>
+<h2 id='http-status-codes'>HTTP Status Codes</h2>
+<p>Here are some common HTTP status codes that Notes Storer API may return</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Status Code</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>200 - OK</td>
+<td>The request is successful and the response body contains the requested data.</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>400 - Bad Request</td>
+<td>The request is invalid and the response body contains explanation what&#39;s wrong.</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>401 - Unauthorized</td>
+<td>The authentication failed or you don&#39;t have permission to access the requested resource.</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>404 - Not Found</td>
+<td>The requested resource isn&#39;t found.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>405 - Method Not Allowed</td>
+<td>The resource doesn&#39;t support the requested HTTP method.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>500 - Internal Server Error</td>
+<td>An error occured on the server. Try again later.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>503 - Service Unavailable</td>
+<td>Service is temporarily unavailable. Please try again later.</td>
+</tr>
+</tbody></table>
+<h2 id='error-response'>Error response</h2>
+<p>The errors may also contain a JSON response body explaining what&#39;s wrong with the request. </p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>Error code.</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>message</td>
+<td>A text explaining the reason for an error.</td>
 </tr>
 </tbody></table>
 
+<blockquote>
+<p>An error response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">error</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The 'content' propety is required."</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
