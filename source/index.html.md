@@ -104,18 +104,6 @@ curl -L 'https://dev-api.notestorer.com/notes/{id}' \
 -H 'Authorization: Basic amFuZToxMjM0NTY3OA=='
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 1,
-  "title": "My first note",
-  "content": "This is my **first** note.",
-  "created": "2023-19-03 22:26:33",
-  "last_updated": "2023-19-03 22:26:33"
-}
-```
-
 Use the endpoint to retrieve a note specified by ID.
 
 ### HTTP Request
@@ -127,6 +115,19 @@ Use the endpoint to retrieve a note specified by ID.
 Parameter | Description
 --------- | -----------
 id | The ID of the note to retrieve.
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "title": "My first note",
+  "content": "This is my **first** note.",
+  "created": "2023-19-03 22:26:33",
+  "last_updated": "2023-19-03 22:26:33"
+}
+```
 
 ### Response body
 
@@ -140,15 +141,6 @@ last_updated | string | Date and time when the note is last updated. The date is
 
 ## Update a note
 
-
-### Request body
-
-Parameter | Type | Description
---------- | ---- |-----------
-title | string | Updated title of the note.
-content | string | Updated text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.
-
-
 ```shell
 curl --location --request POST 'https://dev-api.notestorer.com/notes/:id' \
 --header 'Authorization: Basic amFuZToxMjM0NTY3OA==' \
@@ -157,19 +149,6 @@ curl --location --request POST 'https://dev-api.notestorer.com/notes/:id' \
     "content":"This is an updated note."
 }'
 ```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 1,
-  "title": "My first note",
-  "content": "This is an updated note.",
-  "created": "2023-19-03 22:26:33",
-  "last_updated": "2023-19-03 23:20:12"
-}
-```
-
 Use the endpoint to update an existing note. Any property not provided will be left unchanged.
 
 ### HTTP Request
@@ -184,6 +163,38 @@ Parameter | Description
 id | The ID of the note to update.
 
 
+### Request body
+
+Parameter | Type | Description
+--------- | ---- |-----------
+title | string | Updated title of the note.
+content | string | Updated text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.
+
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "title": "My first note",
+  "content": "This is an updated note.",
+  "created": "2023-19-03 22:26:33",
+  "last_updated": "2023-19-03 23:20:12"
+}
+```
+
+### Response body
+
+Parameter | Type | Description
+--------- | ---- | -----------
+id | string | A unique identifier for the note. 
+title | string | Title of the note.
+content | string | Text of the note.
+created | string | Date and time when the note is created. The date is in the UTC format.
+last_updated | string | Date and time when the note is last updated. The date is in the UTC format.
+
+
 ## Delete a note
 
 
@@ -192,7 +203,7 @@ curl --location -g --request DELETE 'https://dev-api.notestorer.com/notes/{id}' 
 --header 'Authorization: Basic amFuZToxMjM0NTY3OA=='
 ```
 
-> The above command returns an HTTP 200 status code. 
+> The above command returns an HTTP `200 OK` status code. 
 
 Use the endpoint to permanently delete a note specified by ID. The action can't be undone.
 
@@ -215,6 +226,14 @@ curl --location --request GET 'https://dev-api.notestorer.com/notes' \
 --header 'Authorization: Basic amFuZToxMjM0NTY3OA=='
 ```
 
+
+Use the endpoint all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.
+
+
+### HTTP Request
+
+`[GET http://example.com/notes](https://dev-api.notestorer.com/notes)`
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -235,13 +254,6 @@ curl --location --request GET 'https://dev-api.notestorer.com/notes' \
   }
 ]
 ```
-
-Use the endpoint all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.
-
-
-### HTTP Request
-
-`[GET http://example.com/notes](https://dev-api.notestorer.com/notes)`
 
 ### Response body
 
