@@ -622,10 +622,13 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </aside>
  -->
 
-<p>Notes Storer API returns general HTTP status codes in any of the following ranges:
-- <code>2xx</code>: The range indicates that the request is successfully processed.
-- <code>4xx</code>: The range indicates that something is wrong with the request (incorrect parameters, failed authentication, and more).
-- <code>5xx</code>: The range indicates that something is wrong with our server.</p>
+<p>Notes Storer API returns general HTTP status codes in any of the following ranges:</p>
+
+<ul>
+<li><code>2xx</code>: The range indicates that the request is successfully processed.</li>
+<li><code>4xx</code>: The range indicates that something is wrong with the request (incorrect parameters, failed authentication, and more).</li>
+<li><code>5xx</code>: The range indicates that something is wrong with our server.</li>
+</ul>
 <h2 id='http-status-codes'>HTTP Status Codes</h2>
 <p>Here are some common HTTP status codes that Notes Storer API may return</p>
 
@@ -664,7 +667,16 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>Service is temporarily unavailable. Please try again later.</td>
 </tr>
 </tbody></table>
-<h2 id='error-response'>Error response</h2>
+
+<blockquote>
+<p>An error response example:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="nl">"error"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The 'content' property is required."</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h2 id='error-response'>Error response</h2>
 <p>The errors may also contain a JSON response body explaining what&#39;s wrong with the request. </p>
 
 <table><thead>
@@ -683,15 +695,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>An error response example:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="nl">"error"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The 'content' property is required."</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre></div>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
