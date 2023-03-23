@@ -42,9 +42,8 @@ To obtain the credentials, register for an account on the Note Storer platform. 
 
 `Authorization: Basic Base64{username:password}`
 
-<aside class="notice">
 You must replace `username` and`password` with your credentails and use [Base64 encoding](https://www.base64encode.org/).
-</aside>
+
 
 # API Reference
 
