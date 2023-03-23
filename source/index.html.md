@@ -16,7 +16,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Notes Storer API
+    content: Documentation for the Note Storer API
 ---
 
 # Introduction
