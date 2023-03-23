@@ -5,7 +5,6 @@ language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of
   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -38,7 +37,7 @@ Note Stoer API uses Basic Authentication to authenticate the requests. Each requ
 
 To obtain the credentials, register for an account on the Note Storer platform. Once registered, you will receive a username and password that can be used to authenticate the requests. 
 
-<aside class="warning">Keep the credentials secure and not share them with others, as they provide access to your data. </aside>
+<aside class="warning">Keep the credentials secure and don't share them with others, as they provide access to your data. </aside>
 
 
 `Authorization: Basic Base64{username:password}`
@@ -80,12 +79,12 @@ Use the endpoint to create a new note.
 
 `GET https://dev-api.notestorer.com/notes`
 
-### Query Parameters
+### Request body
 
 Parameter | Description
 --------- | -----------
 title | Title of the note. If no title is specified, current date and time is set as the title.
-content | Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 1024 characters.
+content | Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.
 
 
 ## Retrieve a note
@@ -113,13 +112,21 @@ Use the endpoint to retrieve a note specified by ID.
 
 `GET https://dev-api.notestorer.com/notes/{id}`
 
-### URL Parameters
+### Path parameters
 
 Parameter | Description
 --------- | -----------
-id | The ID of the note to retrieve
+id | The ID of the note to retrieve.
 
 ## Update a note
+
+
+### Quest body
+
+Parameter | Description
+--------- | -----------
+title | Updated title of the note.
+content | Updated text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.
 
 
 ```shell
@@ -145,6 +152,17 @@ curl --location --request POST 'https://dev-api.notestorer.com/notes/:id' \
 
 Use the endpoint to update an existing note. Any property not provided will be left unchanged.
 
+### HTTP Request
+
+`POST https://dev-api.notestorer.com/notes/{id}`
+
+
+### Path parameters
+
+Parameter | Description
+--------- | -----------
+id | The ID of the note to update.
+
 
 ## Delete a note
 
@@ -162,7 +180,7 @@ Use the endpoint to permanently delete a note specified by ID. The action can't 
 
 `DELETE https://dev-api.notestorer.com/notes/{id}`
 
-### URL Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -198,7 +216,7 @@ curl --location --request GET 'https://dev-api.notestorer.com/notes' \
 ]
 ```
 
-Use the endpoint to retrieve a list of your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.
+Use the endpoint to retrieve all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.
 
 
 ### HTTP Request
