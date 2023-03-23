@@ -385,18 +385,6 @@ You must replace `username` and`password` with your credentails and use [Base64 
     "content": "This is my **first** note."
 }'</span>
 </code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My first note"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is my **first** note."</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre></div>
 <p>Use the endpoint to create a new note.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://dev-api.notestorer.com/notes</code></p>
@@ -419,7 +407,19 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <td>Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.</td>
 </tr>
 </tbody></table>
-<h3 id='response-body'>Response body</h3>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My first note"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is my **first** note."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h3 id='response-body'>Response body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -616,6 +616,40 @@ You must replace `username` and`password` with your credentails and use [Base64 
 <p>Use the endpoint all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>[GET http://example.com/notes](https://dev-api.notestorer.com/notes)</code></p>
+<h3 id='response-body-3'>Response body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>A unique identifier for the note.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Title of the note.</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>Text of the note.</td>
+</tr>
+<tr>
+<td>created</td>
+<td>string</td>
+<td>Date and time when the note is created. The date is in the UTC format.</td>
+</tr>
+<tr>
+<td>last_updated</td>
+<td>string</td>
+<td>Date and time when the note is last updated. The date is in the UTC format.</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <!-- <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
