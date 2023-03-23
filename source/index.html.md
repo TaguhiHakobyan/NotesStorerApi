@@ -3,9 +3,6 @@ title: API Reference
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -20,85 +17,164 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the Notes Storer API
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the Note Storer API, an open-source project that provides a simple and efficient way to store and manage notes. This API is designed to be easily integrated into any application that requires note-taking functionality. With our API, you can create, retrieve, update, delete and list notes with ease. 
+The Note Storer API is organized around [REST](https://en.wikipedia.org/wiki/Representational_state_transfer).
 
 # Authentication
 
-> To authorize, use this code:
+> To authorization header looks like this:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: Basic amFuZToxMjM0NTY3OA=="
 ```
 
-```javascript
-const kittn = require('kittn');
+Note Stoer API uses Basic Authentication to authenticate the requests. Each request must include an HTTP header with the 'username' and 'password' of an authorized user. The 'username and 'password' should be encoded in `Base64` and passed as the value of the `Authorization` header.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+To obtain the credentials, register for an account on the Note Storer platform. Once registered, you will receive a username and password that can be used to authenticate the requests. 
 
-> Make sure to replace `meowmeowmeow` with your API key.
+<aside class="warning">Keep the credentials secure and not share them with others, as they provide access to your data. </aside>
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Basic Base64{username:password}`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace `username` and`password` with your credentails and use [Base64 encoding](https://www.base64encode.org/).
 </aside>
 
-# Kittens
+# API Reference
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Create a note
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl -L 'https://dev-api.notestorer.com/notes' \
+-H 'Authorization: Basic amFuZToxMjM0NTY3OA==' \
+-H 'Content-Type: application/json' \
+-d '{
+    "title":"My first note",
+    "content": "This is my **first** note."
+}'
 ```
 
-```javascript
-const kittn = require('kittn');
+> The above command returns JSON structured like this:
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+```json
+{
+  "id": 1,
+  "title": "My first note",
+  "content": "This is my **first** note.",
+  "created": "2023-19-03 22:26:33",
+  "last_updated": "2023-19-03 22:26:33"
+}
+
+```
+
+Use the endpoint to create a new note.
+
+### HTTP Request
+
+`GET https://dev-api.notestorer.com/notes`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+title | Title of the note. If no title is specified, current date and time is set as the title.
+content | Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 1024 characters.
+
+
+## Retrieve a note
+
+```shell
+curl -L 'https://dev-api.notestorer.com/notes/{id}' \
+-H 'Authorization: Basic amFuZToxMjM0NTY3OA=='
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "title": "My first note",
+  "content": "This is my **first** note.",
+  "created": "2023-19-03 22:26:33",
+  "last_updated": "2023-19-03 22:26:33"
+}
+```
+
+Use the endpoint to retrieve a note specified by ID.
+
+### HTTP Request
+
+`GET https://dev-api.notestorer.com/notes/{id}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+id | The ID of the note to retrieve
+
+## Update a note
+
+
+```shell
+curl --location --request POST 'https://dev-api.notestorer.com/notes/:id' \
+--header 'Authorization: Basic amFuZToxMjM0NTY3OA==' \
+--header 'Content-Type: application/json' \
+--data '{
+    "content":"This is an updated note."
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "title": "My first note",
+  "content": "This is an updated note.",
+  "created": "2023-19-03 22:26:33",
+  "last_updated": "2023-19-03 23:20:12"
+}
+```
+
+Use the endpoint to update an existing note. Any property not provided will be left unchanged.
+
+
+## Delete a note
+
+
+```shell
+curl --location -g --request DELETE 'https://dev-api.notestorer.com/notes/{id}' \
+--header 'Authorization: Basic amFuZToxMjM0NTY3OA=='
+```
+
+> The above command returns an HTTP 200 status code. 
+
+Use the endpoint to permanently delete a note specified by ID. The action can't be undone.
+
+### HTTP Request
+
+`DELETE https://dev-api.notestorer.com/notes/{id}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+id | The ID of the note to delete.
+
+
+## List all notes
+
+
+```shell
+curl --location --request GET 'https://dev-api.notestorer.com/notes' \
+--header 'Authorization: Basic amFuZToxMjM0NTY3OA=='
 ```
 
 > The above command returns JSON structured like this:
@@ -107,139 +183,24 @@ let kittens = api.kittens.get();
 [
   {
     "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "title": "My first note",
+    "content": "This is an updated note.",
+    "created": "2023-19-03 22:26:33",
+    "last_updated": "2023-19-03 23:20:12"
   },
   {
     "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "title": "My second note",
+    "content": "This is my second note.",
+    "created": "2023-22-03 22:26:33",
+    "last_updated": "2023-23-03 23:20:12"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+Use the endpoint to retrieve a list of your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.
+
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+`[GET http://example.com/notes](https://dev-api.notestorer.com/notes)`
