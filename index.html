@@ -374,9 +374,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
 
 <p><code>Authorization: Basic Base64{username:password}</code></p>
 
-<aside class="notice">
-You must replace `username` and`password` with your credentails and use [Base64 encoding](https://www.base64encode.org/).
-</aside>
+<p>You must replace <code>username</code> and<code>password</code> with your credentails and use <a href="https://www.base64encode.org/">Base64 encoding</a>.</p>
 <h1 id='api-reference'>API Reference</h1><h2 id='create-a-note'>Create a note</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-L</span> <span class="s1">'https://dev-api.notestorer.com/notes'</span> <span class="se">\</span>
 <span class="nt">-H</span> <span class="s1">'Authorization: Basic amFuZToxMjM0NTY3OA=='</span> <span class="se">\</span>
 <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
