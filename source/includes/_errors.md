@@ -38,7 +38,7 @@ message | A text explaining the reason for an error.
 ```json
 "error" : {
   "code": 400,
-  "message": "The 'content' propety is required.",
+  "message": "The 'content' property is required.",
 }
 
 ```
