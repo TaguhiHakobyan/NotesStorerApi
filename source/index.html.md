@@ -26,7 +26,7 @@ The Note Storer API is organized around [REST](https://en.wikipedia.org/wiki/Rep
 
 # Authentication
 
-> To authorization header looks like this:
+> The authorization header looks like this:
 
 
 ```shell
