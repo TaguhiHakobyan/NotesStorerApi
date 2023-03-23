@@ -81,11 +81,20 @@ Use the endpoint to create a new note.
 
 ### Request body
 
-Parameter | Description
---------- | -----------
-title | Title of the note. If no title is specified, current date and time is set as the title.
-content | Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.
+Parameter | Type | Description
+--------- | ---- | -----------
+title | string |Title of the note. If no title is specified, current date and time is set as the title.
+content <br/><sup>Required</sup>  | string | Text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.
 
+### Response body
+
+Parameter | Type | Description
+--------- | ---- | -----------
+id | string | A unique identifier for the note. 
+title | string | Title of the note.
+content | string | Text of the note.
+created | string | Date and time when the note is created. The date is in the UTC format.
+last_updated | string | Date and time when the note is last updated. The date is in the UTC format.
 
 ## Retrieve a note
 
@@ -118,15 +127,25 @@ Parameter | Description
 --------- | -----------
 id | The ID of the note to retrieve.
 
+### Response body
+
+Parameter | Type | Description
+--------- | ---- | -----------
+id | string | A unique identifier for the note. 
+title | string | Title of the note.
+content | string | Text of the note.
+created | string | Date and time when the note is created. The date is in the UTC format.
+last_updated | string | Date and time when the note is last updated. The date is in the UTC format.
+
 ## Update a note
 
 
-### Quest body
+### Request body
 
-Parameter | Description
---------- | -----------
-title | Updated title of the note.
-content | Updated text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.
+Parameter | Type | Description
+--------- | ---- |-----------
+title | string | Updated title of the note.
+content | string | Updated text of the note. Symbols and markdown syntax is allowed. Maximum allowed length of the text is 5000 characters.
 
 
 ```shell
@@ -216,7 +235,7 @@ curl --location --request GET 'https://dev-api.notestorer.com/notes' \
 ]
 ```
 
-Use the endpoint to retrieve all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.
+Use the endpoint all your notes. The notes are sorted by the last update date, with the latest updates notes appearing first.
 
 
 ### HTTP Request
