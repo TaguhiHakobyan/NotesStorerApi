@@ -73,7 +73,7 @@ Use the endpoint to create a new note.
 
 ### HTTP Request
 
-`GET https://dev-api.notestorer.com/notes`
+`POST https://dev-api.notestorer.com/notes`
 
 #### Request body
 
