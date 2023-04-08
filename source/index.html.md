@@ -23,6 +23,7 @@ meta:
 # Introduction
 
 Welcome to the Note Storer API, an open-source project that provides a simple and efficient way to store and manage notes. This API is designed to be easily integrated into any application that requires note-taking functionality. The Note Storer application can be helpful for projects who need to store and retrieve notes within their application. 
+
 The task management tools, in particular, can benefit from this integration. By integrating the Note Storer API, your users can create notes related to their tasks and make the task management process a lot smoother. For instance, users can store their findings or useful information about their tasks in their notes and then access them when working on the task. Moreover, they can get all their notes and quickly find relevant information across multiple tasks. 
 
 With our API, you can create, retrieve, update, delete and list notes with ease. It is designed to be flexible and customizable, allowing you to adjust and build your own unique note-taking experience for your users.
@@ -51,7 +52,7 @@ To obtain the credentials, register for an account on the Note Storer platform. 
 
 You must replace `username` and`password` with your credentails and use [Base64 encoding](https://www.base64encode.org/).
 
-<aside class="notice">If you have trouble authenticating your requests, [contact the help center](https://taguhihakobyan.github.io/NotesStorerApi/#contact-us) for assistance. </aside>
+If you have trouble authenticating your requests, [contact the help center](https://taguhihakobyan.github.io/NotesStorerApi/#contact-us) for assistance.
 
 
 # API Reference
