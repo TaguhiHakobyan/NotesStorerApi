@@ -241,7 +241,7 @@ Use the endpoint all your notes. The notes are sorted by the last update date, w
 
 ### HTTP Request
 
-`[GET http://example.com/notes](https://dev-api.notestorer.com/notes)`
+`GET https://dev-api.notestorer.com/notes`
 
 > The above command returns JSON structured like this:
 
