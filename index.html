@@ -349,6 +349,17 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#contact-us" class="toc-h1 toc-link" data-title="Contact us">Contact us</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#email" class="toc-h2 toc-link" data-title="Email">Email</a>
+                  </li>
+                  <li>
+                    <a href="#phone" class="toc-h2 toc-link" data-title="Phone">Phone</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
@@ -358,8 +369,12 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Note Storer API, an open-source project that provides a simple and efficient way to store and manage notes. This API is designed to be easily integrated into any application that requires note-taking functionality. With our API, you can create, retrieve, update, delete and list notes with ease. 
-The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>.</p>
+<p>Welcome to the Note Storer API, an open-source project that provides a simple and efficient way to store and manage notes. This API is designed to be easily integrated into any application that requires note-taking functionality. The Note Storer application can be helpful for projects who need to store and retrieve notes within their application. 
+The task management tools, in particular, can benefit from this integration. By integrating the Note Storer API, your users can create notes related to their tasks and make the task management process a lot smoother. For instance, users can store their findings or useful information about their tasks in their notes and then access them when working on the task. Moreover, they can get all their notes and quickly find relevant information across multiple tasks. </p>
+
+<p>With our API, you can create, retrieve, update, delete and list notes with ease. It is designed to be flexible and customizable, allowing you to adjust and build your own unique note-taking experience for your users.</p>
+
+<p>The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>The authorization header looks like this:</p>
@@ -375,6 +390,8 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
 <p><code>Authorization: Basic Base64{username:password}</code></p>
 
 <p>You must replace <code>username</code> and<code>password</code> with your credentails and use <a href="https://www.base64encode.org/">Base64 encoding</a>.</p>
+
+<aside class="notice">If you have trouble authenticating your requests, [contact the help center](https://taguhihakobyan.github.io/NotesStorerApi/#contact-us) for assistance. </aside>
 <h1 id='api-reference'>API Reference</h1><h2 id='create-a-note'>Create a note</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-L</span> <span class="s1">'https://dev-api.notestorer.com/notes'</span> <span class="se">\</span>
 <span class="nt">-H</span> <span class="s1">'Authorization: Basic amFuZToxMjM0NTY3OA=='</span> <span class="se">\</span>
 <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
@@ -386,7 +403,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
 <p>Use the endpoint to create a new note.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://dev-api.notestorer.com/notes</code></p>
-<h3 id='request-body'>Request body</h3>
+<h4 id='request-body'>Request body</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -417,7 +434,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
   </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre></div><h3 id='response-body'>Response body</h3>
+</span></code></pre></div><h4 id='response-body'>Response body</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -457,7 +474,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
 <p>Use the endpoint to retrieve a note specified by ID.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://dev-api.notestorer.com/notes/{id}</code></p>
-<h3 id='path-parameters'>Path parameters</h3>
+<h4 id='path-parameters'>Path parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -480,7 +497,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
   </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-body-2'>Response body</h3>
+</span></code></pre></div><h4 id='response-body-2'>Response body</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -524,7 +541,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
 <p>Use the endpoint to update an existing note. Any property not provided will be left unchanged.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST https://dev-api.notestorer.com/notes/{id}</code></p>
-<h3 id='path-parameters-2'>Path parameters</h3>
+<h4 id='path-parameters-2'>Path parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -536,7 +553,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
 <td>The ID of the note to update.</td>
 </tr>
 </tbody></table>
-<h3 id='request-body-2'>Request body</h3>
+<h4 id='request-body-2'>Request body</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -566,7 +583,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
   </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 22:26:33"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-19-03 23:20:12"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-body-3'>Response body</h3>
+</span></code></pre></div><h4 id='response-body-3'>Response body</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -610,7 +627,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
 <p>Use the endpoint to permanently delete a note specified by ID. The action can&#39;t be undone.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>DELETE https://dev-api.notestorer.com/notes/{id}</code></p>
-<h3 id='path-parameters-3'>Path Parameters</h3>
+<h4 id='path-parameters-3'>Path Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -648,7 +665,7 @@ The Note Storer API is organized around <a href="https://en.wikipedia.org/wiki/R
     </span><span class="nl">"last_updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-23-03 23:20:12"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div><h3 id='response-body-4'>Response body</h3>
+</span></code></pre></div><h4 id='response-body-4'>Response body</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -760,6 +777,14 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>A text explaining the reason for an error.</td>
 </tr>
 </tbody></table>
+<h1 id='contact-us'>Contact us</h1>
+<p>If you have any questions or feedback about the Noter Storer API or need assistance, please don&#39;t hesitate to contact us. We&#39;re here to help!</p>
+<h2 id='email'>Email</h2>
+<p>You can reach us via email at support@noterstorer.com. It may take up to 2 business days to get a response.</p>
+<h2 id='phone'>Phone</h2>
+<p>Our contact center is available Monday to Friday, 9 am-5 pm EST, and can be reached at 1 (555) 123-4567.</p>
+
+<p>We value your feedback. Thank you for your time and support. </p>
 
       </div>
       <div class="dark-box">
