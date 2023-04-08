@@ -9,6 +9,7 @@ toc_footers:
 
 includes:
   - errors
+  - contact-us
 
 search: true
 
@@ -21,8 +22,13 @@ meta:
 
 # Introduction
 
-Welcome to the Note Storer API, an open-source project that provides a simple and efficient way to store and manage notes. This API is designed to be easily integrated into any application that requires note-taking functionality. With our API, you can create, retrieve, update, delete and list notes with ease. 
+Welcome to the Note Storer API, an open-source project that provides a simple and efficient way to store and manage notes. This API is designed to be easily integrated into any application that requires note-taking functionality. The Note Storer application can be helpful for projects who need to store and retrieve notes within their application. 
+The task management tools, in particular, can benefit from this integration. By integrating the Note Storer API, your users can create notes related to their tasks and make the task management process a lot smoother. For instance, users can store their findings or useful information about their tasks in their notes and then access them when working on the task. Moreover, they can get all their notes and quickly find relevant information across multiple tasks. 
+
+With our API, you can create, retrieve, update, delete and list notes with ease. It is designed to be flexible and customizable, allowing you to adjust and build your own unique note-taking experience for your users.
+
 The Note Storer API is organized around [REST](https://en.wikipedia.org/wiki/Representational_state_transfer).
+
 
 # Authentication
 
@@ -37,12 +43,15 @@ Note Stoer API uses Basic Authentication to authenticate the requests. Each requ
 
 To obtain the credentials, register for an account on the Note Storer platform. Once registered, you will receive a username and password that can be used to authenticate the requests. 
 
+
 <aside class="warning">Keep the credentials secure and don't share them with others, as they provide access to your data. </aside>
 
 
 `Authorization: Basic Base64{username:password}`
 
 You must replace `username` and`password` with your credentails and use [Base64 encoding](https://www.base64encode.org/).
+
+<aside class="notice">If you have trouble authenticating your requests, [contact the help center](https://taguhihakobyan.github.io/NotesStorerApi/#contact-us) for assistance. </aside>
 
 
 # API Reference
@@ -65,7 +74,7 @@ Use the endpoint to create a new note.
 
 `GET https://dev-api.notestorer.com/notes`
 
-### Request body
+#### Request body
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -86,7 +95,7 @@ content <br/><sup>Required</sup>  | string | Text of the note. Symbols and markd
 
 ```
 
-### Response body
+#### Response body
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -109,7 +118,7 @@ Use the endpoint to retrieve a note specified by ID.
 
 `GET https://dev-api.notestorer.com/notes/{id}`
 
-### Path parameters
+#### Path parameters
 
 Parameter | Description
 --------- | -----------
@@ -128,7 +137,7 @@ id | The ID of the note to retrieve.
 }
 ```
 
-### Response body
+#### Response body
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -155,14 +164,14 @@ Use the endpoint to update an existing note. Any property not provided will be l
 `POST https://dev-api.notestorer.com/notes/{id}`
 
 
-### Path parameters
+#### Path parameters
 
 Parameter | Description
 --------- | -----------
 id | The ID of the note to update.
 
 
-### Request body
+#### Request body
 
 Parameter | Type | Description
 --------- | ---- |-----------
@@ -183,7 +192,7 @@ content | string | Updated text of the note. Symbols and markdown syntax is allo
 }
 ```
 
-### Response body
+#### Response body
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -210,7 +219,7 @@ Use the endpoint to permanently delete a note specified by ID. The action can't 
 
 `DELETE https://dev-api.notestorer.com/notes/{id}`
 
-### Path Parameters
+#### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -254,7 +263,7 @@ Use the endpoint all your notes. The notes are sorted by the last update date, w
 ]
 ```
 
-### Response body
+#### Response body
 
 Parameter | Type | Description
 --------- | ---- | -----------
