@@ -10,3 +10,15 @@ You can reach us via email at support@noterstorer.com. It may take up to 2 busin
 Our contact center is available Monday to Friday, 9 am-5 pm EST, and can be reached at 1 (555) 123-4567.
 
 We value your feedback. Thank you for your time and support. 
+
+
+
+
+
+
+
+
+
+
+
+
